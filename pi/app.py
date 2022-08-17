@@ -9,8 +9,8 @@ from nextcord import Member
 from nextcord.ext.commands import has_permissions, MissingPermissions
 from dotenv import load_dotenv
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+# load_dotenv()
+# TOKEN = os.getenv('DISCORD_TOKEN')
 
 intents = nextcord.Intents.default()
 intents.members = True
@@ -141,4 +141,6 @@ async def colour(interaction: Interaction):
     view = DropdownView()
     await interaction.send("Veamos que team color eres:", view=view)
 
-bot.run(TOKEN)
+#bot.run(TOKEN)
+if __name__ == '__main__':
+    bot.run(os.environ["DISCORD_TOKEN"])
