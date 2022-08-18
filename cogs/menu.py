@@ -1,7 +1,7 @@
 from config import *
 import nextcord
 from nextcord.ext import commands
-from nextcord import Interaction, SlashOption
+from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
 
 class Dropdown(nextcord.ui.Select):
     def __init__(self):
