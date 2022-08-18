@@ -4,10 +4,9 @@ import datetime
 import nextcord
 from time import sleep
 from nextcord.ext import commands
-from nextcord import Interaction, SlashOption
-from nextcord import Member
+from nextcord import Interaction, SlashOption, Member, Embed, ChannelType
 from nextcord.ext.commands import has_permissions, MissingPermissions
-from dotenv import load_dotenv
+#from dotenv import load_dotenv 
 
 # load_dotenv()
 # TOKEN = os.getenv('DISCORD_TOKEN')
@@ -25,15 +24,15 @@ async def on_ready():
     print('------------------------------------------------------------\n')
 
 #Cogs
-# innitial_extensions = []
+innitial_extensions = []
 
-# for i in os.listdir(".\cogs"):
-#     if i.endswith(".py"):
-#         innitial_extensions.append("cogs." + i[:-3])
+for i in os.listdir("./cogs"):
+    if i.endswith(".py"):
+        innitial_extensions.append("cogs." + i[:-3])
 
-# if __name__ == "__main__":
-#     for extension in innitial_extensions:
-#         bot.load_extension(extension)
+if __name__ == "__main__":
+    for extension in innitial_extensions:
+        bot.load_extension(extension)
 
 def current_date_format(date):
     months = ("Enero", "Febrero", "Marzo", "Abri", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
@@ -53,8 +52,8 @@ Fecha_actual = current_date_format(datetime.datetime.now())
 
 @bot.slash_command(guild_ids=[ServersID], name='ip-server', description="Mira la ip del servidor!")
 async def Ip_servidor(interaction: Interaction):
-    IpServer_embed=nextcord.Embed(title="IP:", description="Servidor en proceso..", color=0x1FD3F3)
-    await interaction.response.send_message(embed=IpServer_embed, ephemeral=True)
+    embed=nextcord.Embed(title="IP:", description="Servidor en proceso..", color=0x1FD3F3)
+    await interaction.response.send_message(embed=embed)
 
 @bot.slash_command(guild_ids=[ServersID], name='profile-user', description="Mira el perfil de un usuario!")
 async def Profile(interaction: Interaction, user:nextcord.Member):
@@ -68,7 +67,7 @@ async def Profile(interaction: Interaction, user:nextcord.Member):
     embed.set_footer(text=f'Solicitado por: {interaction.user.name}#{interaction.user.discriminator}\nFecha: {Fecha_actual}')
     embed.set_image(url='https://i.ibb.co/XzNGGC4/Cartel-servidor.png')
     #Profile_embed.set_image(url='https://i.ibb.co/DzXLq1K/kgCYlv0.gif') # GIF DE LINEA DE COLORES
-    await interaction.response.send_message(embed=embed, ephemeral=True)
+    await interaction.response.send_message(embed=embed)
 
 @bot.slash_command(guild_ids=[ServersID], name='server-info', description='Mira la informacion del servidor!')
 async def server_info(interaction: Interaction):
@@ -85,7 +84,7 @@ async def server_info(interaction: Interaction):
     embed.add_field(name='Servidor creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S'), inline=False)
     embed.add_field(name='Bots', value=list_of_bots, inline=False)
     embed.set_footer(text=f'Solicitado por: {interaction.user.name}#{interaction.user.discriminator}\nFecha: {Fecha_actual}')
-    await interaction.response.send_message(embed=embed, ephemeral=True)
+    await interaction.response.send_message(embed=embed)
 
 @bot.slash_command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
 async def Clear(interaction: Interaction, amount:str):
