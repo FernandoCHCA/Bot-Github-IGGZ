@@ -24,7 +24,7 @@ async def on_ready():
     print('------------------------------------------------------------\n')
 
 #Cogs
-for fn in os.listdir('./cogs'):
+for fn in os.listdir('./cogs/Utilidad'):
     if fn.endswith('.py'):
         bot.load_extension(f"cogs.{fn[:-3]}")
 
