@@ -46,7 +46,7 @@ Fecha_actual = current_date_format(datetime.datetime.now())
 
 @bot.slash_command(guild_ids=[ServersID], name='ip-server', description="Mira la ip del servidor!")
 async def Ip_servidor(interaction: Interaction):
-    embed=nextcord.Embed(title="IP:", description="Servidor en proceso..", color=0x1FD3F3)
+    embed=nextcord.Embed(title="IP:", description="Servidor en proceso...", color=0x1FD3F3)
     await interaction.response.send_message(embed=embed)
 
 @bot.slash_command(guild_ids=[ServersID], name='profile-user', description="Mira el perfil de un usuario!")
