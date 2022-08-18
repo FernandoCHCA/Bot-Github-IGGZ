@@ -68,7 +68,7 @@ async def Profile(interaction: Interaction, user:nextcord.Member):
     embed.set_footer(text=f'Solicitado por: {interaction.user.name}#{interaction.user.discriminator}\nFecha: {Fecha_actual}')
     embed.set_image(url='https://i.ibb.co/XzNGGC4/Cartel-servidor.png')
     #Profile_embed.set_image(url='https://i.ibb.co/DzXLq1K/kgCYlv0.gif') # GIF DE LINEA DE COLORES
-    await interaction.response.send_message(embed=embed)
+    await interaction.response.send_message(embed=embed, ephemeral=True)
 
 @bot.slash_command(guild_ids=[ServersID], name='server-info', description='Mira la informacion del servidor!')
 async def server_info(interaction: Interaction):
@@ -85,20 +85,20 @@ async def server_info(interaction: Interaction):
     embed.add_field(name='Servidor creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S'), inline=False)
     embed.add_field(name='Bots', value=list_of_bots, inline=False)
     embed.set_footer(text=f'Solicitado por: {interaction.user.name}#{interaction.user.discriminator}\nFecha: {Fecha_actual}')
-    await interaction.response.send_message(embed=embed)
+    await interaction.response.send_message(embed=embed, ephemeral=True)
 
 @bot.slash_command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
 async def Clear(interaction: Interaction, amount:str):
     if amount == 'all':
         await interaction.channel.purge()
         Clear_embed=nextcord.Embed(title="Se han borrado todos los mensajes", color=0x1FD3F3)
-        await interaction.response.send_message(embed=Clear_embed)
+        await interaction.response.send_message(embed=Clear_embed, ephemeral=True)
         await asyncio.sleep(3.0)
         await interaction.delete_original_message()
     else:
         await interaction.channel.purge(limit=(int(amount)))
         Clear_embed=nextcord.Embed(title=f"Mensajes borrados: {amount}", color=0x1FD3F3)
-        await interaction.response.send_message(embed=Clear_embed)
+        await interaction.response.send_message(embed=Clear_embed, ephemeral=True)
         await asyncio.sleep(3.0)
         await interaction.delete_original_message()
 
