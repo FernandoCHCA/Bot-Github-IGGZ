@@ -20,19 +20,13 @@ bot = commands.Bot(command_prefix='-', intents=intents, help_command=None, case_
 async def on_ready():
     await bot.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.playing, name="Visual Studio Code"))
     print('\n------------------------------------------------------------')
-    print('          El bot ya está listo para ser utilizado!')
+    print(f'          El bot {bot.user} is online...')
     print('------------------------------------------------------------\n')
 
 #Cogs
-innitial_extensions = []
-
-for i in os.listdir("./cogs"):
-    if i.endswith(".py"):
-        innitial_extensions.append("cogs." + i[:-3])
-
-if __name__ == "__main__":
-    for extension in innitial_extensions:
-        bot.load_extension(extension)
+for fn in os.listdir('./cogs'):
+    if fn.endswith('.py'):
+        bot.load_extension(f"cogs.{fn[:-3]}")
 
 def current_date_format(date):
     months = ("Enero", "Febrero", "Marzo", "Abri", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
