@@ -1,8 +1,7 @@
 import nextcord
 from nextcord.ext import commands
 from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
-
-ServersID = 994288503103959051
+from config import *
 
 class Embed(commands.Cog):
     def __init__(self, client):
