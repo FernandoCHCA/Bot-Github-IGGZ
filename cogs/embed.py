@@ -11,7 +11,7 @@ class Embed(commands.Cog):
     @slash_command(name='embed-create', description='Crea un embed para ti!', guild_ids=[ServersID])
     async def embed_create(self, 
     ctx:Interaction,
-    title: str = nextcord.SlashOption(name='embed-title', description='Titulo de tu embed', required=False),
+    title: str = nextcord.SlashOption(name='embed-title', description='Titulo de su embed', required=False),
     description: str = nextcord.SlashOption(name='embed-description', description='Mensaje de descripcion de su embed', required=False),
     colour: str = nextcord.SlashOption(name='embed-colour', description='Proporcione un código hexadecimal para el color de su embed', required=False),
     footer: str = nextcord.SlashOption(name='embed-footer', description='Mensaje del footer de su embed', required=False),
