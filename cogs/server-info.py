@@ -12,6 +12,7 @@ class ServerInfo(commands.Cog):
         embed = nextcord.Embed(color=0x1FD3F3)
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
+        Contador_roles = len(interaction.role.mention)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
         list_of_roles = []
         current_lenght = 0
@@ -30,10 +31,8 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Owner', value=interaction.guild.owner.mention, inline=False)
         embed.add_field(name='Creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S PM'), inline=False)
         embed.add_field(name='Contador de Miembros', value='〔🧒🏻​ {} humanos〕 | 〔🤖​ {} bots〕 | 〔🧔🏻​ {} total〕'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
-        #embed.add_field(name='Top rol', value=interaction.guild.roles[-31])
-        embed.add_field(name='Bots', value=list_of_bots, inline=False)
-        embed.add_field(name='Roles', value=", ".join(list_of_roles), inline=False)
-        #embed.set_footer(text=f'Requested by: {interaction.user.name}#{interaction.user.discriminator}\n{Fecha_actual}', icon_url='https://i.ibb.co/nCCJ2Wb/378-3782140-discord-server-icon-cute-imagenes-para-perfil-de.png')
+        embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
+        embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
         await interaction.response.send_message(embed=embed)
 
 #Setup 
