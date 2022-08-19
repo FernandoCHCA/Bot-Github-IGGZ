@@ -13,8 +13,7 @@ class ServerInfo(commands.Cog):
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
-        Contador_roles = len(interaction.guild.roles)
-        list_of_roles = [role.mention for role in Contador_roles]
+        list_of_roles = [role.mention for role in interaction.guild.roles]
 
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
