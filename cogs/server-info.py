@@ -9,12 +9,12 @@ class ServerInfo(commands.Cog):
 
     @bot.slash_command(guild_ids=[ServersID], name='server-info', description='Mira la informacion del servidor!')
     async def server_info(self, interaction: Interaction):
-        #role_count = len(interaction.guild.roles)
         embed = nextcord.Embed(color=0x1FD3F3)
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
-        list_of_roles = [role.mention for role in interaction.guild.roles if len(role.mention) == 20]
+        Contador_roles = len(interaction.guild.roles)
+        list_of_roles = [role.mention for role in Contador_roles if role == 10]
 
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
