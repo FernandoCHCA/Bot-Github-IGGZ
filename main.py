@@ -20,7 +20,7 @@ bot = commands.Bot(command_prefix='-', intents=intents, help_command=None, case_
 async def on_ready():
     await bot.change_presence(activity=nextcord.Activity(type=nextcord.ActivityType.playing, name="Visual Studio Code"))
     print('\n------------------------------------------------------------')
-    print(f'          El bot {bot.user} is online...')
+    print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
 
 #Cogs
