@@ -11,15 +11,15 @@ class Embed(commands.Cog):
     @slash_command(name='embed-create', description='Crea un embed para ti', guild_ids=[ServersID])
     async def embed_create(self, 
     ctx:Interaction,
-    title: str = nextcord.SlashOption(name='embed-title', description='Titulo de su embed', required=False),
-    description: str = nextcord.SlashOption(name='embed-description', description='Mensaje de descripcion', required=False),
-    colour: str = nextcord.SlashOption(name='embed-colour', description='Proporcione un código hexadecimal', required=False),
-    footer: str = nextcord.SlashOption(name='embed-footer', description='Mensaje de footer.', required=False),
+    title: str = nextcord.SlashOption(name='embed-title', description='Titulo de tu embed', required=False),
+    description: str = nextcord.SlashOption(name='embed-description', description='Mensaje de descripcion de su embed', required=False),
+    colour: str = nextcord.SlashOption(name='embed-colour', description='Proporcione un código hexadecimal para el color de su embed', required=False),
+    footer: str = nextcord.SlashOption(name='embed-footer', description='Mensaje del footer de su embed', required=False),
     footer_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-footer-icon', description='Seleccione un archivo de imagen para el icono del footer', required=False),
     channel: nextcord.abc.GuildChannel = nextcord.SlashOption(channel_types=[ChannelType.text],name='channel', description='Seleccione el canal donde se enviara su embed', required=False),
     image: nextcord.Attachment = nextcord.SlashOption(name='embed-image', description='Seleccione un archivo de imagen para incrustar la imagen', required=False),
     thumbnail: nextcord.Attachment = nextcord.SlashOption(name='embed-thumbnail', description='Seleccione un archivo de imagen para incrustar la miniatura', required=False),
-    author: str = nextcord.SlashOption(name='embed-author', description='Mensaje del autor', required=False),
+    author: str = nextcord.SlashOption(name='embed-author', description='Mensaje del autor de su embed', required=False),
     author_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-author-icon', description='Seleccione un archivo de imagen', required=False)
     ):
         embed = nextcord.Embed()
