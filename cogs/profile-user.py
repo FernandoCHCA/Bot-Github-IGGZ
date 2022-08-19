@@ -16,7 +16,7 @@ class ProfileServer(commands.Cog):
         embed.add_field(name='Se unio', value=user.joined_at.__format__('%d/%m/%Y, %H:%M:%S'), inline=False)
         embed.add_field(name='Categoria de rol mas alto', value=user.top_role, inline=False)
         embed.set_thumbnail(user.avatar)
-        embed.set_footer(text=f'Solicitado por: {interaction.user.name}#{interaction.user.discriminator}\nFecha: {Fecha_actual}')
+        embed.set_footer(text=f'Requested by: {interaction.user.name}#{interaction.user.discriminator}\nFecha: {Fecha_actual}')
         embed.set_image(url='https://i.ibb.co/XzNGGC4/Cartel-servidor.png')
         #Profile_embed.set_image(url='https://i.ibb.co/DzXLq1K/kgCYlv0.gif') # GIF DE LINEA DE COLORES
         await interaction.response.send_message(embed=embed)
