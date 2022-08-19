@@ -9,7 +9,7 @@ class Clear(commands.Cog):
         self.client = client
 
     @bot.slash_command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
-    async def Clear(interaction: Interaction, amount:str):
+    async def Clear(self, interaction: Interaction, amount:str):
         if amount == 'all':
             await interaction.channel.purge()
             embed=nextcord.Embed(title="Se han borrado todos los mensajes", color=0x1FD3F3)

@@ -38,7 +38,7 @@ class Menu(commands.Cog):
         self.client = client
 
     @bot.slash_command()
-    async def colour(interaction: Interaction):
+    async def colour(self, interaction: Interaction):
         view = DropdownView()
         await interaction.send("Veamos que team color eres:", view=view)
 

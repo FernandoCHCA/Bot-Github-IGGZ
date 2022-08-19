@@ -8,7 +8,7 @@ class ServerInfo(commands.Cog):
         self.client = client
 
     @bot.slash_command(guild_ids=[ServersID], name='server-info', description='Mira la informacion del servidor!')
-    async def server_info(interaction: Interaction):
+    async def server_info(self, interaction: Interaction):
         role_count = len(interaction.guild.roles)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
         embed = nextcord.Embed(color=0x1FD3F3)
