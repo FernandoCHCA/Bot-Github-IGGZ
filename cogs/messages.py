@@ -11,7 +11,7 @@ class Hello(commands.Cog):
     async def on_message(self, interaction: Interaction, message):
         if interaction.message.author == bot.user:
             return
-        if interaction.message.content.startswith("Hola"):
+        if interaction.message.content.startswith("!hola"):
             await interaction.channel.send("Hola papu!")
 #Setup 
 def setup(client):
