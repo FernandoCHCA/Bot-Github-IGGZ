@@ -133,6 +133,6 @@ for fn in os.listdir('./cogs'):
 #     view = DropdownView()
 #     await interaction.send("Veamos que team color eres:", view=view)
 
-#bot.run(TOKEN)
-if __name__ == '__main__':
-    bot.run(os.environ["DISCORD_TOKEN"])
+bot.run('DISCORD_TOKEN')
+# if __name__ == '__main__':
+#     bot.run(os.environ["DISCORD_TOKEN"])
