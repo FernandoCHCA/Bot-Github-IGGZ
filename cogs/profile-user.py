@@ -7,7 +7,7 @@ class ProfileServer(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @bot.slash_command(guild_ids=[ServersID], name='profile user', description="Mira el perfil de un usuario!")
+    @bot.slash_command(guild_ids=[ServersID], name='profile-user', description="Mira el perfil de un usuario!")
     async def Profile(self, interaction: Interaction, user:nextcord.Member):
         embed=nextcord.Embed(title="Informacion del usuario", url='https://www.youtube.com/channel/UCxjRO--ufLCnThv15pIe1lQ', color=0x1FD3F3)
         embed.add_field(name='Usuario', value=user.mention, inline=False)
