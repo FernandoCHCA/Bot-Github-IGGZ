@@ -15,7 +15,7 @@ class ServerInfo(commands.Cog):
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
         Roles = interaction.guild.roles
-        Roles = [role.mention for role in Roles[-21]+"and more..."]
+        #Roles = [role.mention for role in Roles[-21]+"and more..."]
 
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
