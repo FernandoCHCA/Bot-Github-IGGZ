@@ -18,7 +18,7 @@ class Embed(commands.Cog):
     footer: str = nextcord.SlashOption(name='footer', description='Mensaje del footer de su embed', required=False),
     footer_icon: nextcord.Attachment = nextcord.SlashOption(name='footer-icon', description='Seleccione un archivo de imagen para el icono del footer', required=False),
     channel: nextcord.abc.GuildChannel = nextcord.SlashOption(channel_types=[ChannelType.text],name='channel', description='Seleccione el canal donde se enviara su embed', required=False),
-    timestamp: str = nextcord.SlashOption(name='timestamp', description='Quieres que tenga timestamp tu embed?', required=False),
+    timestamp: str = nextcord.SlashOption(name='timestamp', description='Quieres que tenga timestamp tu embed?', choices={'True': True, 'False': False}, required=False),
     image: nextcord.Attachment = nextcord.SlashOption(name='image', description='Seleccione un archivo de imagen para incrustar la imagen', required=False),
     thumbnail: nextcord.Attachment = nextcord.SlashOption(name='thumbnail', description='Seleccione un archivo de imagen para incrustar la miniatura', required=False),
     author: str = nextcord.SlashOption(name='author', description='Mensaje del autor de su embed', required=False),
