@@ -12,9 +12,7 @@ class ServerInfo(commands.Cog):
         role_count = len(interaction.guild.roles)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
         embed = nextcord.Embed(color=0x1FD3F3)
-        Contador_humanos = [interaction.guild.humans.count]
         Contador_humanos_Count = len(interaction.guild.humans)
-        Contador_bots = [interaction.guild.bots.count]
         Contador_bots_Count = len(interaction.guild.bots)
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
