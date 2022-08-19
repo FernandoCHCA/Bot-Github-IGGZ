@@ -21,8 +21,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Top rol', value=interaction.guild.roles[-31])
         embed.add_field(name='Servidor creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S'), inline=False)
         embed.add_field(name='Bots', value=list_of_bots, inline=False)
-        embed.set_footer(text=f'Requested by: {interaction.user.name}#{interaction.user.discriminator}\n{Fecha_actual}', icon_url={interaction.user.avatar})
-        embed.set_footer
+        embed.set_footer(text=f'Requested by: {interaction.user.name}#{interaction.user.discriminator}\n{Fecha_actual}', icon_url='https://i.ibb.co/nCCJ2Wb/378-3782140-discord-server-icon-cute-imagenes-para-perfil-de.png')
         await interaction.response.send_message(embed=embed)
 
 #Setup 
