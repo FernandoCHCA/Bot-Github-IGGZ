@@ -8,24 +8,23 @@ class Embed(commands.Cog):
         self.client = client
     
     #Embed command
-    @slash_command(name='create-embed', description='Create embed.', guild_ids=[ServersID])
+    @slash_command(name='embed create', description='Crea un embed para ti', guild_ids=[ServersID])
     async def embed_create(self, 
     ctx:Interaction,
-    channel: nextcord.abc.GuildChannel = nextcord.SlashOption(channel_types=[ChannelType.text],name='channel', description='Please select a channel', required=False),
-    author: str = nextcord.SlashOption(name='embed-author', description='Entre the author msg', required=False),
-    author_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-author-icon', description='Please select a image file', required=False),
-    title: str = nextcord.SlashOption(name='embed-title', description='Entre title msg.', required=False),
-    description: str = nextcord.SlashOption(name='embed-description', description='Entre description msg.', required=False),
-    footer: str = nextcord.SlashOption(name='embed-footer', description='Entre footer msg.', required=False),
-    footer_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-footer-icon', description='Please select a image file for footer icon', required=False),
-    image: nextcord.Attachment = nextcord.SlashOption(name='embed-image', description='Please select a image file for embed image', required=False),
-    thumbnail: nextcord.Attachment = nextcord.SlashOption(name='embed-thumbnail', description='Please select a image file for embed thumbnail', required=False),
-    colour: str = nextcord.SlashOption(name='embed-colour', description='Please provide a hex code', required=False)
+    title: str = nextcord.SlashOption(name='embed-title', description='Titulo de su embed', required=False),
+    description: str = nextcord.SlashOption(name='embed-description', description='Mensaje de descripcion', required=False),
+    colour: str = nextcord.SlashOption(name='embed-colour', description='Proporcione un código hexadecimal', required=False),
+    footer: str = nextcord.SlashOption(name='embed-footer', description='Mensaje de footer.', required=False),
+    footer_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-footer-icon', description='Seleccione un archivo de imagen para el icono del footer', required=False),
+    channel: nextcord.abc.GuildChannel = nextcord.SlashOption(channel_types=[ChannelType.text],name='channel', description='Seleccione el canal donde se enviara su embed', required=False),
+    image: nextcord.Attachment = nextcord.SlashOption(name='embed-image', description='Seleccione un archivo de imagen para incrustar la imagen', required=False),
+    thumbnail: nextcord.Attachment = nextcord.SlashOption(name='embed-thumbnail', description='Seleccione un archivo de imagen para incrustar la miniatura', required=False),
+    author: str = nextcord.SlashOption(name='embed-author', description='Mensaje del autor', required=False),
+    author_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-author-icon', description='Seleccione un archivo de imagen', required=False)
     ):
         embed = nextcord.Embed()
         if not channel:
             channel = ctx.channel
-            
         if author is not None and author_icon is not None:
             embed.set_author(name=author, icon_url=author_icon)
         elif author is not None and author_icon is None:
@@ -49,10 +48,9 @@ class Embed(commands.Cog):
         if colour:
             embed.colour=int("0x" + colour, 16)
         if not author and not title and not description and not footer and not image and not thumbnail and not colour:
-            await ctx.response.send_message("Please write any of these values", ephemeral=True)
+            await ctx.response.send_message("Por favor, escriba alguno de estos valores", ephemeral=True)
         else:
             await channel.send(embed=embed)
-            await ctx.response.send_message(f"Embed sent to {channel}")
 
 #Setup 
 def setup(client):

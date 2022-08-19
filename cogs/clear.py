@@ -8,7 +8,7 @@ class Clear(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @bot.slash_command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
+    @bot.slash_command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes')
     async def Clear(self, interaction: Interaction, amount:str):
         if amount == 'all':
             await interaction.channel.purge()
