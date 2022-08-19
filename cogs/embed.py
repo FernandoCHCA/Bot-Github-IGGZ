@@ -58,7 +58,8 @@ class Embed(commands.Cog):
             await ctx.response.send_message(embed=embed, ephemeral=True)
         else:
             await channel.send(embed=embed)
-            embed=nextcord.Embed(description=f"**Embed creado satisfactoriamente en el canal:** {channel}", color=0x1FD3F3, ephemeral=True)
+            embed_confirmacion=nextcord.Embed(description=f"**Embed creado satisfactoriamente en el canal:** {channel}", color=0x1FD3F3)
+            await ctx.response.send_message(embed=embed_confirmacion, ephemeral=True)
 
 #Setup 
 def setup(client):
