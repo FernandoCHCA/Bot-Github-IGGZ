@@ -17,7 +17,7 @@ class ServerInfo(commands.Cog):
         #RolesServer = 
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
-        embed.add_field(name='Owner', value=interaction.guild.owner, inline=False)
+        embed.add_field(name='Owner', value=interaction.guild.owner.mention, inline=False)
         embed.add_field(name='Creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S PM'), inline=False)
         embed.add_field(name='Contador de Miembros', value='〔🧒🏻​ {} humanos〕 | 〔🤖​ {} bots〕 | 〔🧔🏻​ {} total〕'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
         #embed.add_field(name='Top rol', value=interaction.guild.roles[-31])
