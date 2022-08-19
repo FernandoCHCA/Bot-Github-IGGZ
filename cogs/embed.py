@@ -24,7 +24,6 @@ class Embed(commands.Cog):
     author: str = nextcord.SlashOption(name='author', description='Mensaje del autor de su embed', required=False),
     author_icon: nextcord.Attachment = nextcord.SlashOption(name='author-icon', description='Seleccione un archivo de imagen', required=False)
     ):
-        #Valor_booleano = bool(timestamp)
         embed = nextcord.Embed()
         if not channel:
             channel = ctx.channel
