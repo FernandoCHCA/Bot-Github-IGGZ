@@ -12,7 +12,7 @@ class ServerInfo(commands.Cog):
         embed = nextcord.Embed(color=0x1FD3F3)
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
-        Contador_roles = len(role.mention)
+        Contador_roles = len(interaction.role)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
         list_of_roles = []
         current_lenght = 0
