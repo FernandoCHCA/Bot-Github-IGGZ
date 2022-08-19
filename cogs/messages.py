@@ -12,7 +12,7 @@ class Hello(commands.Cog):
         if interaction.message.author == bot.user:
             return
         if interaction.message.content.startswith("!hola"):
-            await interaction.channel.send("Hola papu!")
+            await interaction.response.send_message("Hola papu!")
 #Setup 
 def setup(client):
     client.add_cog(Hello(client))
