@@ -13,14 +13,12 @@ class Clear(commands.Cog):
         if amount == 'all':
             await interaction.channel.purge()
             embed=nextcord.Embed(title="Se han borrado todos los mensajes", color=0x1FD3F3)
-            embed.set_footer(text='Este mensaje desaparecerá en 20 segundos')
             await interaction.response.send_message(embed=embed, ephemeral=True)
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()
         else:
             await interaction.channel.purge(limit=(int(amount)))
             embed=nextcord.Embed(title=f"Mensajes borrados: {amount}", color=0x1FD3F3)
-            embed.set_footer(text='Este mensaje desaparecerá en 20 segundos')
             await interaction.response.send_message(embed=embed, ephemeral=True)
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()
