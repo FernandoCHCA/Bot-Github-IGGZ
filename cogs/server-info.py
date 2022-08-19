@@ -13,7 +13,17 @@ class ServerInfo(commands.Cog):
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
-        #list_of_roles = [role.mention for role in interaction.guild.roles]
+        list_of_roles = []
+        current_lenght = 0
+        for role in interaction.guild.roles:
+
+            if current_lenght + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+                list_of_roles.append(role.mention)
+                current_lenght += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
+
+            else:
+                list_of_roles.append("and more...")
+                break
 
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
@@ -22,7 +32,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Contador de Miembros', value='〔🧒🏻​ {} humanos〕 | 〔🤖​ {} bots〕 | 〔🧔🏻​ {} total〕'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
         #embed.add_field(name='Top rol', value=interaction.guild.roles[-31])
         #embed.add_field(name='Bots', value=list_of_bots, inline=False)
-        #embed.add_field(name='Roles', value=list_of_roles, inline=False)
+        embed.add_field(name='Roles', value=", ".join(list_of_roles), inline=False)
         #embed.set_footer(text=f'Requested by: {interaction.user.name}#{interaction.user.discriminator}\n{Fecha_actual}', icon_url='https://i.ibb.co/nCCJ2Wb/378-3782140-discord-server-icon-cute-imagenes-para-perfil-de.png')
         await interaction.response.send_message(embed=embed)
 
