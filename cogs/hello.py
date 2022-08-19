@@ -8,8 +8,8 @@ class Hello(commands.Cog):
         self.client = client
 
     @bot.command()
-    async def hello(self, ctx):
-        await ctx.send('Hola papu')
+    async def hello(self, interaction: Interaction):
+        await interaction.response.send_message('Hola papu')
 #Setup 
 def setup(client):
     client.add_cog(Hello(client))
