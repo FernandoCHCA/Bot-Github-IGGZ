@@ -18,7 +18,7 @@ class Clear(commands.Cog):
             await interaction.delete_original_message()
         else:
             await interaction.channel.purge(limit=(int(amount)))
-            embed=nextcord.Embed(description=f"**Mensajes borrados**: {amount}", color=0x1FD3F3)
+            embed=nextcord.Embed(description=f"**Mensajes borrados:** {amount}", color=0x1FD3F3)
             await interaction.response.send_message(embed=embed, ephemeral=True)
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()

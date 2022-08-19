@@ -24,6 +24,7 @@ class Embed(commands.Cog):
     author: str = nextcord.SlashOption(name='author', description='Mensaje del autor de su embed', required=False),
     author_icon: nextcord.Attachment = nextcord.SlashOption(name='author-icon', description='Seleccione un archivo de imagen', required=False)
     ):
+        Valor_booleano = bool(timestamp)
         embed = nextcord.Embed()
         if not channel:
             channel = ctx.channel
@@ -37,9 +38,9 @@ class Embed(commands.Cog):
             embed.title=title
         if description:
             embed.description=description
-        if timestamp is 'True':
+        if Valor_booleano is True:
             embed.timestamp=datetime.datetime.utcnow()
-        elif timestamp is 'False':
+        elif Valor_booleano is False:
             pass
         if footer_icon is not None and footer_icon is not None:
             embed.set_footer(text=footer, icon_url=footer_icon)
