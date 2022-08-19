@@ -38,9 +38,9 @@ class Embed(commands.Cog):
             embed.title=title
         if description:
             embed.description=description
-        if timestamp is 'True':
+        if timestamp == 'True':
             embed.timestamp=datetime.datetime.utcnow()
-        elif timestamp is 'False':
+        elif timestamp == 'False':
             pass
         if footer_icon is not None and footer_icon is not None:
             embed.set_footer(text=footer, icon_url=footer_icon)
