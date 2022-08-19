@@ -1,3 +1,4 @@
+from time import time
 import nextcord
 from nextcord.ext import commands
 from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
@@ -11,16 +12,17 @@ class Embed(commands.Cog):
     @slash_command(name='embed-create', description='Crea un embed para ti!', guild_ids=[ServersID])
     async def embed_create(self, 
     ctx:Interaction,
-    title: str = nextcord.SlashOption(name='embed-title', description='Titulo de su embed', required=False),
-    description: str = nextcord.SlashOption(name='embed-description', description='Mensaje de descripcion de su embed', required=False),
-    colour: str = nextcord.SlashOption(name='embed-colour', description='Proporcione un código hexadecimal para el color de su embed', required=False),
-    footer: str = nextcord.SlashOption(name='embed-footer', description='Mensaje del footer de su embed', required=False),
-    footer_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-footer-icon', description='Seleccione un archivo de imagen para el icono del footer', required=False),
+    title: str = nextcord.SlashOption(name='title', description='Titulo de su embed', required=False),
+    description: str = nextcord.SlashOption(name='description', description='Mensaje de descripcion de su embed', required=False),
+    colour: str = nextcord.SlashOption(name='colour', description='Proporcione un código hexadecimal para el color de su embed', required=False),
+    footer: str = nextcord.SlashOption(name='footer', description='Mensaje del footer de su embed', required=False),
+    footer_icon: nextcord.Attachment = nextcord.SlashOption(name='footer-icon', description='Seleccione un archivo de imagen para el icono del footer', required=False),
     channel: nextcord.abc.GuildChannel = nextcord.SlashOption(channel_types=[ChannelType.text],name='channel', description='Seleccione el canal donde se enviara su embed', required=False),
-    image: nextcord.Attachment = nextcord.SlashOption(name='embed-image', description='Seleccione un archivo de imagen para incrustar la imagen', required=False),
-    thumbnail: nextcord.Attachment = nextcord.SlashOption(name='embed-thumbnail', description='Seleccione un archivo de imagen para incrustar la miniatura', required=False),
-    author: str = nextcord.SlashOption(name='embed-author', description='Mensaje del autor de su embed', required=False),
-    author_icon: nextcord.Attachment = nextcord.SlashOption(name='embed-author-icon', description='Seleccione un archivo de imagen', required=False)
+    timestamp: str = nextcord.SlashOption(name='timestamp', description='Quieres que tenga timestamp tu embed?', required=False),
+    image: nextcord.Attachment = nextcord.SlashOption(name='image', description='Seleccione un archivo de imagen para incrustar la imagen', required=False),
+    thumbnail: nextcord.Attachment = nextcord.SlashOption(name='thumbnail', description='Seleccione un archivo de imagen para incrustar la miniatura', required=False),
+    author: str = nextcord.SlashOption(name='author', description='Mensaje del autor de su embed', required=False),
+    author_icon: nextcord.Attachment = nextcord.SlashOption(name='author-icon', description='Seleccione un archivo de imagen', required=False)
     ):
         embed = nextcord.Embed()
         if not channel:
@@ -35,6 +37,8 @@ class Embed(commands.Cog):
             embed.title=title
         if description:
             embed.description=description
+        if timestamp:
+            embed.timestamp=datetime.datetime.utcnow()
         if footer_icon is not None and footer_icon is not None:
             embed.set_footer(text=footer, icon_url=footer_icon)
         elif footer is not None and footer_icon is None:
