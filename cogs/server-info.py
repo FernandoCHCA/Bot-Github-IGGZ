@@ -14,6 +14,7 @@ class ServerInfo(commands.Cog):
         embed = nextcord.Embed(color=0x1FD3F3)
         Contador_humanos = len(interaction.guild.humans)
         Contador_bots = len(interaction.guild.bots)
+        #RolesServer = 
         embed.set_author(name=interaction.guild)
         embed.set_thumbnail(interaction.guild.icon)
         embed.add_field(name='Owner', value=interaction.guild.owner, inline=False)
