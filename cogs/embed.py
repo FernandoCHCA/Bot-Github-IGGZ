@@ -52,7 +52,9 @@ class Embed(commands.Cog):
         if colour:
             embed.colour=int("0x" + colour, 16)
         if not author and not title and not description and not footer and not image and not thumbnail and not colour:
-            await ctx.response.send_message("❌ Error | `Se necesita al menos un campo de texto o una imagen`", ephemeral=True)
+            embed=nextcord.Embed(description="❌ Error | `Se necesita al menos un campo de texto o una imagen`", color=0xEC2424, ephemeral=True)
+            await ctx.response.send_message(embed=embed)
+            #await ctx.response.send_message("❌ Error | `Se necesita al menos un campo de texto o una imagen`", ephemeral=True)
         else:
             await channel.send(embed=embed)
 
