@@ -14,7 +14,7 @@ intents = nextcord.Intents.default()
 intents.members = True
 intents.message_content = True
 intents.presences = True
-bot = commands.Bot(command_prefix='!', intents=intents, help_command=None, case_insensitive=True)
+bot = commands.Bot(command_prefix='-', intents=intents, help_command=None, case_insensitive=True)
 
 @bot.event
 async def on_ready():

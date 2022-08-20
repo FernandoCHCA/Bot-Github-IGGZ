@@ -24,6 +24,10 @@ class Clear(commands.Cog):
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()
 
+class Clear2(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+
     @bot.command(guild_ids=[ServersID])
     async def Clear(self, interaction: Interaction, amount:str):
         if amount == 'all':
@@ -42,3 +46,6 @@ class Clear(commands.Cog):
 #Setup 
 def setup(client):
     client.add_cog(Clear(client))
+
+def setup(client):
+    client.add_cog(Clear2(client))
