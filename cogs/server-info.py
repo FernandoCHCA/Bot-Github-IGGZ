@@ -48,7 +48,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
         embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
         #embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=', '.join(str(tup) for tup in list_of_emojis), inline=False)
-        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=", ".join(list_of_emojis), inline=False)
+        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=list_of_emojis, inline=False)
         await ctx.response.send_message(embed=embed)
 
 #Setup 
