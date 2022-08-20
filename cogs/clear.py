@@ -4,6 +4,7 @@ import asyncio
 from nextcord.ext import commands
 from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
 
+bot.remove_command('clear')
 class Clear(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -23,7 +24,7 @@ class Clear(commands.Cog):
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()
 
-    @bot.command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
+    @bot.command(guild_ids=[ServersID])
     async def Clear(self, interaction: Interaction, amount:str):
         if amount == 'all':
             await interaction.channel.purge()
