@@ -15,7 +15,7 @@ class ServerInfo(commands.Cog):
         Contador_roles = len(ctx.guild.roles)
         Contador_emojis = len(ctx.guild.emojis)
         list_of_bots = [bot.mention for bot in ctx.guild.members if bot.bot]
-        list_of_emojis = [ctx.guild.emojis]
+        list_of_emojis = []
         list_of_roles = []
         current_lenght_roles = 0
         current_lenght_emojis = 0
@@ -47,8 +47,8 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, ctx.guild.member_count), inline=False)
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
         embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
-        #embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=', '.join(str(tup) for tup in list_of_emojis), inline=False)
-        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=list_of_emojis, inline=False)
+        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=', '.join(str(tup) for tup in list_of_emojis), inline=False)
+        #embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=list_of_emojis, inline=False)
         await ctx.response.send_message(embed=embed)
 
 #Setup 
