@@ -29,15 +29,15 @@ class ServerInfo(commands.Cog):
                 list_of_roles.append("and more...")
                 break
 
-        for emoji in ctx.guild.emojis:
+        # for emoji in ctx.guild.emojis:
 
-            if current_lenght_emojis + len(ctx.guild.emojis) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
-                list_of_emojis.append(ctx.guild.emojis)
-                current_lenght_emojis += len(ctx.guild.emojis) + 2 # length of the role mention + 2 for ' ,' separator between roles
+        #     if current_lenght_emojis + len(ctx.guild.emojis) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+        #         list_of_emojis.append(ctx.guild.emojis)
+        #         current_lenght_emojis += len(ctx.guild.emojis) + 2 # length of the role mention + 2 for ' ,' separator between roles
 
-            else:
-                list_of_emojis.append("and more...")
-                break
+        #     else:
+        #         list_of_emojis.append("and more...")
+        #         break
 
         embed.set_author(name=ctx.guild)
         embed.set_thumbnail(ctx.guild.icon)
