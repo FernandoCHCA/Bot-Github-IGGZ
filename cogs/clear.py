@@ -4,7 +4,7 @@ import asyncio
 from nextcord.ext import commands
 from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
 
-bot.remove_command('clear')
+# bot.remove_command('clear')
 class Clear(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -24,28 +24,28 @@ class Clear(commands.Cog):
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()
 
-# class Clear2(commands.Cog):
-#     def __init__(self, client):
-#         self.client = client
+class Clear2(commands.Cog):
+    def __init__(self, client):
+        self.client = client
 
-#     @bot.command(guild_ids=[ServersID])
-#     async def Clear(self, interaction: Interaction, amount:str):
-#         if amount == 'all':
-#             await interaction.channel.purge()
-#             embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
-#             await interaction.response.send_message(embed=embed, ephemeral=True)
-#             await asyncio.sleep(20.0)
-#             await interaction.delete_original_message()
-#         else:
-#             await interaction.channel.purge(limit=(int(amount)))
-#             embed=nextcord.Embed(description=f"**Borrado con exito {amount} mensajes**", color=0x1FD3F3)
-#             await interaction.response.send_message(embed=embed, ephemeral=True)
-#             await asyncio.sleep(20.0)
-#             await interaction.delete_original_message()
+    @bot.command(guild_ids=[ServersID])
+    async def Clear(self, ctx: Interaction, amount:str):
+        if amount == 'all':
+            await ctx.channel.purge()
+            embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
+            await ctx.response.send_message(embed=embed, ephemeral=True)
+            await asyncio.sleep(20.0)
+            await ctx.delete_original_message()
+        else:
+            await ctx.channel.purge(limit=(int(amount)))
+            embed=nextcord.Embed(description=f"**Borrado con exito {amount} mensajes**", color=0x1FD3F3)
+            await ctx.response.send_message(embed=embed, ephemeral=True)
+            await asyncio.sleep(20.0)
+            await ctx.delete_original_message()
 
 #Setup 
 def setup(client):
     client.add_cog(Clear(client))
 
-# def setup(client):
-#     client.add_cog(Clear2(client))
+def setup(client):
+    client.add_cog(Clear2(client))
