@@ -15,26 +15,29 @@ class ServerInfo(commands.Cog):
         Contador_roles = len(ctx.guild.roles)
         Contador_emojis = len(ctx.guild.emojis)
         list_of_bots = [bot.mention for bot in ctx.guild.members if bot.bot]
+        list_of_emojis = []
         list_of_roles = []
-        current_lenght = 0
+        current_lenght_roles = 0
+        current_lenght_emojis = 0
         for role in ctx.guild.roles:
 
-            if current_lenght + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+            if current_lenght_roles + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
                 list_of_roles.append(role.mention)
-                current_lenght += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
+                current_lenght_roles += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
 
             else:
                 list_of_roles.append("and more...")
                 break
 
-        msg: str = None
-        if msg:
-            server, found = bot.find_server(msg)
-        if not found:
-            return await bot.send(server)
-        else:
-            server = ctx.message.server
-        emojis = [str(x) for x in server.emojis]
+        for emoji in ctx.guild.emojis:
+
+            if current_lenght_emojis + len(ctx.guild.emojis) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+                list_of_emojis.append(ctx.guild.emojis)
+                current_lenght_emojis += len(ctx.guild.emojis) + 2 # length of the role mention + 2 for ' ,' separator between roles
+
+            else:
+                list_of_emojis.append("and more...")
+                break
 
         embed.set_author(name=ctx.guild)
         embed.set_thumbnail(ctx.guild.icon)
@@ -43,7 +46,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, ctx.guild.member_count), inline=False)
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
         embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
-        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=", ".join(emojis), inline=False)
+        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=", ".join(list_of_emojis), inline=False)
         await ctx.response.send_message(embed=embed)
 
 #Setup 
