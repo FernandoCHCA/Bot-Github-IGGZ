@@ -22,9 +22,9 @@ class ServerInfo(commands.Cog):
 
         for emoji in ctx.guild.emojis:
 
-            if current_lenght_emojis + len(ctx.guild.emojis) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
-                list_of_emojis.append(ctx.guild.emojis)
-                current_lenght_emojis += len(ctx.guild.emojis) + 2 # length of the role mention + 2 for ' ,' separator between roles
+            if current_lenght_emojis + len(str(emoji)) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+                list_of_emojis.append(str(emoji))
+                current_lenght_emojis += len(str(emoji)) + 2 # length of the role mention + 2 for ' ,' separator between roles
 
             else:
                 list_of_emojis.append("and more...")
@@ -47,7 +47,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, ctx.guild.member_count), inline=False)
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
         embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
-        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=', '.join(str(tup) for tup in list_of_emojis), inline=False)
+        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=", ".join(list_of_emojis), inline=False)
         await ctx.response.send_message(embed=embed)
 
 #Setup 
