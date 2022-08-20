@@ -30,15 +30,15 @@ class ServerInfo(commands.Cog):
                 list_of_emojis.append("and more...")
                 break
 
-        for role in ctx.guild.roles:
+        # for role in ctx.guild.roles:
 
-            if current_lenght_roles + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
-                list_of_roles.append(role.mention)
-                current_lenght_roles += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
+        #     if current_lenght_roles + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+        #         list_of_roles.append(role.mention)
+        #         current_lenght_roles += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
 
-            else:
-                list_of_roles.append("and more...")
-                break
+        #     else:
+        #         list_of_roles.append("and more...")
+        #         break
 
         embed.set_author(name=ctx.guild)
         embed.set_thumbnail(ctx.guild.icon)
@@ -46,7 +46,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Creado', value=ctx.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S PM'), inline=False)
         embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, ctx.guild.member_count), inline=False)
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
-        embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
+        #embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
         embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=', '.join(str(tup) for tup in list_of_emojis), inline=False)
         await ctx.response.send_message(embed=embed)
 
