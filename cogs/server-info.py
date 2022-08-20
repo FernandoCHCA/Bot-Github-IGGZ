@@ -8,17 +8,16 @@ class ServerInfo(commands.Cog):
         self.client = client
 
     @bot.slash_command(guild_ids=[ServersID], name='server-info', description='Mira la informacion del servidor!')
-    async def server_info(self, interaction: Interaction):
+    async def server_info(self, ctx:Interaction):
         embed = nextcord.Embed(color=0x1FD3F3)
-        Contador_humanos = len(interaction.guild.humans)
-        Contador_bots = len(interaction.guild.bots)
-        Contador_roles = len(interaction.guild.roles)
-        Contador_emojis = len(interaction.guild.emojis)
-        list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
+        Contador_humanos = len(ctx.guild.humans)
+        Contador_bots = len(ctx.guild.bots)
+        Contador_roles = len(ctx.guild.roles)
+        Contador_emojis = len(ctx.guild.emojis)
+        list_of_bots = [bot.mention for bot in ctx.guild.members if bot.bot]
         list_of_roles = []
-        list_of_emojis = [for emoji in interaction.guild.emojis]
         current_lenght = 0
-        for role in interaction.guild.roles:
+        for role in ctx.guild.roles:
 
             if current_lenght + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
                 list_of_roles.append(role.mention)
@@ -28,15 +27,24 @@ class ServerInfo(commands.Cog):
                 list_of_roles.append("and more...")
                 break
 
-        embed.set_author(name=interaction.guild)
-        embed.set_thumbnail(interaction.guild.icon)
-        embed.add_field(name='Owner', value=interaction.guild.owner.mention, inline=False)
-        embed.add_field(name='Creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S PM'), inline=False)
-        embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
+        msg: str = None
+        if msg:
+            server, found = bot.find_server(msg)
+        if not found:
+            return await bot.send(server)
+        else:
+            server = ctx.message.server
+        emojis = [str(x) for x in server.emojis]
+
+        embed.set_author(name=ctx.guild)
+        embed.set_thumbnail(ctx.guild.icon)
+        embed.add_field(name='Owner', value=ctx.guild.owner.mention, inline=False)
+        embed.add_field(name='Creado', value=ctx.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S PM'), inline=False)
+        embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, ctx.guild.member_count), inline=False)
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
         embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
-        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=list_of_emojis, inline=False)
-        await interaction.response.send_message(embed=embed)
+        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=", ".join(emojis), inline=False)
+        await ctx.response.send_message(embed=embed)
 
 #Setup 
 def setup(client):
