@@ -19,13 +19,12 @@ class ServerInfo(commands.Cog):
         list_of_roles = []
         current_lenght_roles = 0
         current_lenght_emojis = 0
-        current_lenght = 0
 
         for emoji in ctx.guild.emojis:
 
-            if current_lenght + len(str(emoji)) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+            if current_lenght_emojis + len(str(emoji)) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
                 list_of_emojis.append(str(emoji))
-                current_lenght += len(str(emoji)) + 2 # length of the role mention + 2 for ' ,' separator between roles
+                current_lenght_emojis += len(str(emoji)) + 2 # length of the role mention + 2 for ' ,' separator between roles
 
             else:
                 list_of_emojis.append("and more...")
@@ -33,9 +32,9 @@ class ServerInfo(commands.Cog):
 
         for role in ctx.guild.roles:
 
-            if current_lenght + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
+            if current_lenght_roles + len(role.mention) + 2 <= 1012: # +2 is for ' ,' separator between roles; 1012 is 1023 - 11, 11 is length of the phrase 'and more...'
                 list_of_roles.append(role.mention)
-                current_lenght += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
+                current_lenght_roles += len(role.mention) + 2 # length of the role mention + 2 for ' ,' separator between roles
 
             else:
                 list_of_roles.append("and more...")
