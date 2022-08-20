@@ -23,6 +23,9 @@ async def on_ready():
     print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
 
+@bot.command()
+async def camera(ctx:Interaction):
+    await ctx.send('Logitech')
 
 #Cogs
 for fn in os.listdir('./cogs'):
