@@ -33,13 +33,13 @@ class Clear(commands.Cog):
         if amount == 'all':
             await ctx.channel.purge()
             embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
-            await ctx.response.send_message(embed=embed, ephemeral=True)
+            await ctx.send(embed=embed, ephemeral=True)
             await asyncio.sleep(20.0)
             await ctx.delete_original_message()
         else:
             await ctx.channel.purge(limit=(int(amount)+1))
             embed=nextcord.Embed(description=f"**Borrado con exito {amount} mensajes**", color=0x1FD3F3)
-            await ctx.response.send_message(embed=embed, ephemeral=True)
+            await ctx.send(embed=embed, ephemeral=True)
             await asyncio.sleep(20.0)
             await ctx.delete_original_message()
 
