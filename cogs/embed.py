@@ -14,7 +14,7 @@ class Embed(commands.Cog):
     ctx:Interaction,
     title: str = nextcord.SlashOption(name='title', description='Titulo de su embed', required=False),
     description: str = nextcord.SlashOption(name='description', description='Mensaje de descripcion de su embed', required=False),
-    colour: str = nextcord.SlashOption(name='colour', description='Proporcione un código hexadecimal para el color de su embed', required=False),
+    colour: str = nextcord.SlashOption(name='colour', description='Proporcione un código hexadecimal para el color de su embed', choices={'Red':0xEC2424, 'Blue':0x1FD3F3, 'Green':0x23E23D, 'Yellow':0xEEEE14}, required=False),
     footer: str = nextcord.SlashOption(name='footer', description='Mensaje del footer de su embed', required=False),
     footer_icon: nextcord.Attachment = nextcord.SlashOption(name='footer-icon', description='Seleccione un archivo de imagen para el icono del footer', required=False),
     channel: nextcord.abc.GuildChannel = nextcord.SlashOption(channel_types=[ChannelType.text],name='channel', description='Seleccione el canal donde se enviara su embed', required=False),
