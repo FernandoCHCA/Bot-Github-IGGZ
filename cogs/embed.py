@@ -51,6 +51,8 @@ class Embed(commands.Cog):
             embed.set_image(url=image)
         if thumbnail:
             embed.set_thumbnail(url=thumbnail)
+        if colour == 'Red':
+            embed.colour == 0xEC2424
         if colour:
             embed.colour=int("0x" + colour, 16)
         if not author and not title and not description and not footer and not image and not thumbnail and not colour:
