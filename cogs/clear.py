@@ -41,7 +41,7 @@ class Clear2(commands.Cog):
 
 #Setup 
 def setup(client):
-    client.add_cog(Clear, Clear2(client))
+    client.add_cog(Clear(client))
 
-# def setup(client):
-#     client.add_cog(Clear2(client))
+def setup(client):
+    client.add_cog(Clear2(client))
