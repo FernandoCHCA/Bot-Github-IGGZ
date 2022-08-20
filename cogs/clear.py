@@ -2,7 +2,7 @@ from config import *
 import nextcord
 import asyncio
 from nextcord.ext import commands
-from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
+from nextcord import Embed, Interaction, slash_command
 
 # bot.remove_command('clear')
 class Clear(commands.Cog):

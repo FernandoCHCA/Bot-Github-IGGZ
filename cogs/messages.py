@@ -1,9 +1,9 @@
 from config import *
 import nextcord
 from nextcord.ext import commands
-from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
+from nextcord import Embed, Interaction, slash_command, Member, SlashOption
 
-class Hello(commands.Cog):
+class comandos(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -13,6 +13,11 @@ class Hello(commands.Cog):
             return
         if interaction.message.content.startswith("!hola"):
             await interaction.response.send_message("Hola papu!")
+
+    @bot.command()
+    async def camera(ctx:Interaction):
+        await ctx.send('Logitech')
+
 #Setup 
 def setup(client):
-    client.add_cog(Hello(client))
+    client.add_cog(comandos(client))

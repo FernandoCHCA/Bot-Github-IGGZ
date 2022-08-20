@@ -4,17 +4,17 @@ import datetime
 import nextcord
 from time import sleep
 from nextcord.ext import commands
-from nextcord import Interaction
+from nextcord import Interaction, Intents
 #from dotenv import load_dotenv 
 
 # load_dotenv()
 # TOKEN = os.getenv('DISCORD_TOKEN')
 
-intents = nextcord.Intents.default()
+intents = Intents.default()
 intents.members = True
 intents.message_content = True
 intents.presences = True
-bot = commands.Bot(command_prefix='-', intents=intents, help_command=None, case_insensitive=True)
+bot = commands.Bot(command_prefix='=', intents=intents, help_command=None, case_insensitive=True)
 
 @bot.event
 async def on_ready():
@@ -22,10 +22,6 @@ async def on_ready():
     print('\n------------------------------------------------------------')
     print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
-
-@bot.command()
-async def camera(ctx:Interaction):
-    await ctx.send('Logitech')
 
 #Cogs
 for fn in os.listdir('./cogs'):
