@@ -16,6 +16,7 @@ class ServerInfo(commands.Cog):
         Contador_emojis = len(interaction.guild.emojis)
         list_of_bots = [bot.mention for bot in interaction.guild.members if bot.bot]
         list_of_roles = []
+        list_of_emojis = [for emoji in interaction.guild.emojis]
         current_lenght = 0
         for role in interaction.guild.roles:
 
@@ -34,7 +35,7 @@ class ServerInfo(commands.Cog):
         embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | **〔**🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
         embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
         embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
-        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=Contador_emojis, inline=False)
+        embed.add_field(name=f'Emojis〔{Contador_emojis}〕', value=list_of_emojis, inline=False)
         await interaction.response.send_message(embed=embed)
 
 #Setup 
