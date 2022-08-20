@@ -29,7 +29,7 @@ class Clear(commands.Cog):
 #         self.client = client
 
     @bot.command(guild_ids=[ServersID])
-    async def Clear(self, ctx: Interaction, amount:str):
+    async def Clear2(self, ctx: Interaction, amount:str):
         if amount == 'all':
             await ctx.channel.purge()
             embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
