@@ -4,8 +4,7 @@ import datetime
 import nextcord
 from time import sleep
 from nextcord.ext import commands
-from nextcord import Interaction, SlashOption, Member, Embed, ChannelType
-from nextcord.ext.commands import has_permissions, MissingPermissions
+from nextcord import Interaction
 #from dotenv import load_dotenv 
 
 # load_dotenv()
@@ -13,7 +12,7 @@ from nextcord.ext.commands import has_permissions, MissingPermissions
 
 intents = nextcord.Intents.default()
 intents.members = True
-#intents.message_content = True
+intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents, help_command=None, case_insensitive=True)
 
 @bot.event
