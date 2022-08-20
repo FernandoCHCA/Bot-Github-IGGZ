@@ -15,7 +15,7 @@ class ServerInfo(commands.Cog):
         Contador_roles = len(ctx.guild.roles)
         Contador_emojis = len(ctx.guild.emojis)
         list_of_bots = [bot.mention for bot in ctx.guild.members if bot.bot]
-        list_of_emojis = []
+        list_of_emojis = ['asd','asdsda']
         list_of_roles = []
         current_lenght_roles = 0
         current_lenght_emojis = 0
