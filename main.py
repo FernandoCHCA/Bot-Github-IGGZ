@@ -12,7 +12,7 @@ from nextcord.ext.commands import has_permissions, MissingPermissions
 # TOKEN = os.getenv('DISCORD_TOKEN')
 
 intents = nextcord.Intents.default()
-intents.members = True
+#intents.members = True
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents, help_command=None, case_insensitive=True)
 
