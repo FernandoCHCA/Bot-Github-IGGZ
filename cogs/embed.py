@@ -1,5 +1,4 @@
 from time import time
-import asyncio
 import nextcord
 from nextcord.ext import commands
 from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
@@ -59,7 +58,6 @@ class Embed(commands.Cog):
             await ctx.response.send_message(embed=embed, ephemeral=True)
         else:
             await channel.send(embed=embed)
-            await asyncio.sleep(3.0)
             embed_confirmacion=nextcord.Embed(description=f"**Embed creado satisfactoriamente en el canal:** {channel.mention}", color=0x1FD3F3)
             await ctx.response.send_message(embed=embed_confirmacion, ephemeral=True)
 
