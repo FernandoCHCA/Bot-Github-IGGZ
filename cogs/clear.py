@@ -23,6 +23,21 @@ class Clear(commands.Cog):
             await asyncio.sleep(20.0)
             await interaction.delete_original_message()
 
+    @bot.command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
+    async def Clear(self, interaction: Interaction, amount:str):
+        if amount == 'all':
+            await interaction.channel.purge()
+            embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            await asyncio.sleep(20.0)
+            await interaction.delete_original_message()
+        else:
+            await interaction.channel.purge(limit=(int(amount)))
+            embed=nextcord.Embed(description=f"**Borrado con exito {amount} mensajes**", color=0x1FD3F3)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            await asyncio.sleep(20.0)
+            await interaction.delete_original_message()
+
 #Setup 
 def setup(client):
     client.add_cog(Clear(client))
