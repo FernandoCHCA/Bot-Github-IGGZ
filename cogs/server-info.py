@@ -30,9 +30,9 @@ class ServerInfo(commands.Cog):
         embed.set_thumbnail(interaction.guild.icon)
         embed.add_field(name='Owner', value=interaction.guild.owner.mention, inline=False)
         embed.add_field(name='Creado', value=interaction.guild.created_at.__format__('%d/%m/%Y, %H:%M:%S PM'), inline=False)
-        embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | 〔🤖​ {} bots〕 | 〔🧔🏻​ {} total〕'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
-        embed.add_field(name=f'Bots〔{Contador_bots}〕', value=list_of_bots, inline=False)
-        embed.add_field(name=f'Roles〔{Contador_roles}〕', value=", ".join(list_of_roles), inline=False)
+        embed.add_field(name='Contador de Miembros', value='**〔**🧒🏻​ {} humanos**〕** | **〔**🤖​ {} bots**〕** | 〔🧔🏻​ {} total**〕**'.format(Contador_humanos, Contador_bots, interaction.guild.member_count), inline=False)
+        embed.add_field(name=f'Bots**〔**{Contador_bots}**〕**', value=list_of_bots, inline=False)
+        embed.add_field(name=f'Roles**〔**{Contador_roles}**〕**', value=", ".join(list_of_roles), inline=False)
         await interaction.response.send_message(embed=embed)
 
 #Setup 
