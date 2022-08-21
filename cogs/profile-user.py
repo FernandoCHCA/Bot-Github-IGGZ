@@ -17,7 +17,7 @@ class ProfileServer(commands.Cog):
         embed.add_field(name='Rol mas alto', value=user.roles[-2], inline=False)
         embed.set_thumbnail(user.avatar)
         embed.set_footer(text=f'Requested by: {interaction.user.name}#{interaction.user.discriminator}\n{Fecha_actual}', icon_url='https://i.ibb.co/nCCJ2Wb/378-3782140-discord-server-icon-cute-imagenes-para-perfil-de.png')
-        embed.set_image(url='https://i.image.png.co/XzNGGC4/Cartel-servidor.png')
+        embed.set_image(url='https://i.ibb.co/8zn79g6/20220616-214545.png')
         #Profile_embed.set_image(url='https://i.ibb.co/DzXLq1K/kgCYlv0.gif') # GIF DE LINEA DE COLORES
         await interaction.response.send_message(embed=embed)
 
