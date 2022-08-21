@@ -10,7 +10,7 @@ class Clear(commands.Cog):
         self.client = client
 
     @bot.slash_command(guild_ids=[ServersID], name='clear', description='Borra la cantidad especifica de mensajes que gustes!')
-    async def Clear_Slash_Command(self, interaction: Interaction, amount:str):
+    async def clear(self, interaction: Interaction, amount:str):
         if amount == 'all':
             await interaction.channel.purge()
             embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
@@ -22,12 +22,8 @@ class Clear(commands.Cog):
             await interaction.response.send_message(embed=embed, ephemeral=True)
             await interaction.delete_original_message()
 
-# class Clear2(commands.Cog):
-#     def __init__(self, client):
-#         self.client = client
-
 #     @bot.command(guild_ids=[ServersID])
-#     async def clear(self, interaction: Interaction, amount:str):
+#     async def clear_command(self, interaction: Interaction, amount:str):
 #         if amount == 'all':
 #             await interaction.channel.purge()
 #             embed=nextcord.Embed(description="**Se han borrado con exito todos los mensajes**", color=0x1FD3F3)
@@ -42,6 +38,3 @@ class Clear(commands.Cog):
 #Setup 
 def setup(client):
     client.add_cog(Clear(client))
-
-# def setup(client):
-#     client.add_cog(Clear2(client))
