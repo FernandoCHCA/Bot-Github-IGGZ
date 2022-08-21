@@ -26,14 +26,23 @@ class Moderacion(commands.Cog):
         try:
             if not reason: reason="Ninguna razón"
             await member.kick(reason=reason)
+            user = bot.get_user(int(member.id))
             embed=nextcord.Embed(title='Usuario Kickeado!', color=0xEC2424)
-            #SendDM = nextcord.Embed(title="Usted ha sido kickeado", colour=0xEC2424)
+            SendDM = nextcord.Embed(title="Usted ha sido kickeado", colour=0xEC2424)
+            # ESTO SE MOSTRARA EN EL SERVIDOR
             embed.add_field(name='Kickeado por', value=ctx.user.mention, inline=False)
             embed.add_field(name='Miembro', value=member, inline=False)
             embed.add_field(name='Razón', value=reason, inline=False)
             embed.set_thumbnail(member.avatar)
+            # ESTO SE ENVIARA MD AL MIEMBRO
+            SendDM.add_field(name="Nombre del servidor", value=f"{ctx.guild.name}", inline=False)
+            SendDM.add_field(name='Kickeado por', value=ctx.user.mention, inline=False)
+            SendDM.add_field(name='Miembro', value=member, inline=False)
+            SendDM.add_field(name='Razón', value=reason, inline=False)
+            SendDM.set_thumbnail(member.avatar)
+            # AQUI ENVIAMOS MENSAJE AL SERVIDOR Y POR PRIVADO AL MIEMBRO
             await ctx.response.send_message(embed=embed)
-            await member.send(embed=embed)
+            await user.send(embed=SendDM)
         except Exception:
             ErrorEmbed = nextcord.Embed(title="Algo salió mal", description="Hubo un error al intentar realizar este comando.", colour=0xEC2424)
             ErrorEmbed.timestamp = datetime.datetime.utcnow()
