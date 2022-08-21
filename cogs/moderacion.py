@@ -42,7 +42,7 @@ class Moderacion(commands.Cog):
             SendDM.set_thumbnail(member.avatar)
             # AQUI ENVIAMOS MENSAJE AL SERVIDOR Y POR PRIVADO AL MIEMBRO
             await ctx.response.send_message(embed=embed)
-            await user.send(embed=SendDM)
+            await user.send(embed=embed)
         except Exception:
             ErrorEmbed = nextcord.Embed(title="Algo salió mal", description="Hubo un error al intentar realizar este comando.", colour=0xEC2424)
             ErrorEmbed.timestamp = datetime.datetime.utcnow()
