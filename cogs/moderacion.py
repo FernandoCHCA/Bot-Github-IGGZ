@@ -20,11 +20,27 @@ class Moderacion(commands.Cog):
             name='reason',
             description='Por favor, indique la razón',
             required=False #This will make this option as a Optional.
+        ),
+        duration: str = nextcord.SlashOption(
+            name='duration',
+            description='Por favor, indique la duración',
+            required=False #This will make this option as a Optional.
         )
     ):
         if not reason: reason="Ninguna razón"
-        await member.kick(reason=reason)
-        await ctx.response.send_message(f"{member} ha sido expulsado por {ctx.user.mention} por {reason}")
+        if not duration: duration="Tiempo indefinido"
+        await member.kick(reason=reason, duration=duration)
+        embed=nextcord.Embed(
+            title='Nuevo ban!',
+            color=0xEC2424
+            )
+        embed.add_field(name='Kickeado por', value=ctx.user.mention, inline=False)
+        embed.add_field(name='Miembro', value=member, inline=False)
+        embed.add_field(name='Razón', value=reason, inline=False)
+        embed.add_field(name='Duración', value=duration, inline=False)
+        embed.set_thumbnail(member.avatar)
+        await ctx.response.send_message(embed=embed)
+        #await ctx.response.send_message(f"{member} ha sido expulsado por {ctx.user.mention} por {reason}")
 
     @slash_command(name='ban', description='Banea a un miembro', guild_ids=[ServersID])
     async def ban(
