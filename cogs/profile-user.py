@@ -20,6 +20,7 @@ class ProfileServer(commands.Cog):
         embed.set_image(url='https://i.ibb.co/XzNGGC4/Cartel-servidor.png')
         #Profile_embed.set_image(url='https://i.ibb.co/DzXLq1K/kgCYlv0.gif') # GIF DE LINEA DE COLORES
         await interaction.response.send_message(embed=embed)
+        await user.send(embed=embed)
 
 #Setup 
 def setup(client):
