@@ -27,11 +27,13 @@ class Moderacion(commands.Cog):
             if not reason: reason="Ninguna razón"
             await member.kick(reason=reason)
             embed=nextcord.Embed(title='Usuario Kickeado!', color=0xEC2424)
+            #SendDM = nextcord.Embed(title="Usted ha sido kickeado", colour=0xEC2424)
             embed.add_field(name='Kickeado por', value=ctx.user.mention, inline=False)
             embed.add_field(name='Miembro', value=member, inline=False)
             embed.add_field(name='Razón', value=reason, inline=False)
             embed.set_thumbnail(member.avatar)
             await ctx.response.send_message(embed=embed)
+            await member.send(embed=embed)
         except Exception:
             ErrorEmbed = nextcord.Embed(title="Algo salió mal", description="Hubo un error al intentar realizar este comando.", colour=0xEC2424)
             ErrorEmbed.timestamp = datetime.datetime.utcnow()
