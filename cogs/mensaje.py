@@ -9,7 +9,7 @@ class Mensaje(commands.Cog):
 
 
     @bot.command(pass_context=True)
-    async def dm(ctx):
+    async def dm(ctx:Interaction):
         user=await bot.get_user_info("User's ID here")
         await bot.send_message(user, "Your message goes here")
         # This works ^
