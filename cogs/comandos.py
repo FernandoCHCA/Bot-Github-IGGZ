@@ -16,7 +16,7 @@ class comandos(commands.Cog):
 
     @bot.command()
     async def camara(interaction: Interaction):
-        await interaction.send('Logitech')
+        await interaction.response.send_message('Logitech')
 
 #Setup 
 def setup(client):
