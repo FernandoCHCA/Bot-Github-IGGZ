@@ -73,7 +73,7 @@ class Pet(nextcord.ui.Modal):
 @bot.slash_command(
     name="pet",
     description="Describe your favourite pet",
-    guild_ids=[ServersID]
+    guild_ids=[[ServersID]],
 )
 async def send(interaction: nextcord.Interaction):
     modal = Pet()
