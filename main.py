@@ -42,7 +42,7 @@ class EmbedModal(nextcord.ui.Modal):
     async def callback(self, interaction: Interaction) -> None:
         title = self.emTitle.value
         description = self.emDesc.value
-        colour = int('0x' + self.emColor.value)
+        colour = int('0x' + self.emColor.value, 16)
         # if colour:
         #     embed.colour=int("0x" + colour, 16)
         #     colour = self.emColor.value
