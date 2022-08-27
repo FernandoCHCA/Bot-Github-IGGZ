@@ -1,7 +1,6 @@
 import asyncio
 import os
 import datetime
-from urllib import response
 import nextcord
 from config import *
 from time import sleep
