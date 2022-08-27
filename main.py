@@ -1,6 +1,8 @@
 import asyncio
 import os
 import datetime
+from turtle import st
+from urllib import response
 import nextcord
 from config import *
 from time import sleep
@@ -15,7 +17,7 @@ intents = Intents.default()
 intents.members = True
 intents.message_content = True
 intents.presences = True
-bot = commands.Bot(command_prefix='=', intents=intents, help_command=None, case_insensitive=True)
+bot = commands.Bot(command_prefix='!', intents=intents, help_command=None, case_insensitive=True)
 
 @bot.event
 async def on_ready():
@@ -24,66 +26,32 @@ async def on_ready():
     print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
 
-class Pet(nextcord.ui.Modal):
+class EmbedModal(nextcord.ui.Modal):
     def __init__(self):
         super().__init__(
-            "Your pet",
-            timeout=5 * 60,  # 5 minutes
+            "Embed Maker",
         )
 
-        self.name = nextcord.ui.TextInput(
-            label="Your pet's name",
-            min_length=2,
-            max_length=50,
-        )
-        self.add_item(self.name)
+        self.emTitle = nextcord.ui.TextInput(label = "Embed Title", min_length = 2, max_length = 124, required = True, placeholder = "Introduzca el título del embed aquí!")
+        self.add_item(self.emTitle)
 
-        self.description = nextcord.ui.TextInput(
-            label="Description",
-            style=nextcord.TextInputStyle.paragraph,
-            placeholder="Information that can help us recognise your pet",
-            required=False,
-            max_length=1800,
-        )
-        self.add_item(self.description)
+        self.emDesc = nextcord.ui.TextInput(label = "Embed Description", min_length = 5, max_length = 4000, required = True, placeholder = "Introduzca la descripcion del embed aquí!", style = nextcord.TextInputStyle.paragraph)
+        self.add_item(self.emDesc)
 
-        self.pet_type = nextcord.ui.Select(
-            options=[
-                nextcord.SelectOption(label="Dog", emoji="🐶"),
-                nextcord.SelectOption(label="Cat", emoji="🐱"),
-                nextcord.SelectOption(label="Bird", emoji="🐦"),
-                nextcord.SelectOption(label="Fish", emoji="🐟"),
-                nextcord.SelectOption(label="Other", emoji="🐰"),
-            ],
-            min_values=1,
-            max_values=1,
-            placeholder="Type of pet",
-        )
-        self.add_item(self.pet_type)
+    async def callback(self, interaction: Interaction) -> None:
+        title = self.emTitle.value
+        description = self.emDesc.value
+        embed = nextcord.Embed(title=title, description=description)
+        return await interaction.response.send_message(embed=embed)
 
-    async def callback(self, interaction: nextcord.Interaction) -> None:
-        response = f"{interaction.user.mention}'s favourite pet's name is {self.name.value}."
-        response += f"\nThe type of pet is {self.pet_type.values[0]}."
-        if self.description.value != "":
-            response += (
-                f"\nTheir pet can be recognized by this information:\n{self.description.value}"
-            )
-        await interaction.send(response)
-
-@bot.slash_command(
-    name="pet",
-    description="Describe your favourite pet",
-    guild_ids=[ServersID],
-)
-async def send(interaction: nextcord.Interaction):
-    modal = Pet()
-    await interaction.response.send_modal(modal)
+@bot.slash_command(name="Embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
+async def embed(interaction: Interaction):
+    await interaction.response.send_modal(EmbedModal())
 
 #Cogs
 for fn in os.listdir('./cogs'):
     if fn.endswith('.py'):
         bot.load_extension(f"cogs.{fn[:-3]}")
-
 
 if __name__ == '__main__':
     bot.run(os.environ["DISCORD_TOKEN"])
