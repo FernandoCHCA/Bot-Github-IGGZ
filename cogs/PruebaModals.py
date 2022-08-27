@@ -3,6 +3,9 @@ from config import *
 from nextcord import slash_command, Interaction
 from nextcord.ext import commands
 
+class Modals(commands.Cog):
+    def __init__(self, client):
+        self.client = client
 
 class Pet(nextcord.ui.Modal):
     def __init__(self):
@@ -51,9 +54,6 @@ class Pet(nextcord.ui.Modal):
         await interaction.send(response)
 
 
-bot = commands.Bot()
-
-
 @bot.slash_command(
     name="pet",
     description="Describe your favourite pet",
@@ -62,3 +62,7 @@ bot = commands.Bot()
 async def send(interaction: nextcord.Interaction):
     modal = Pet()
     await interaction.response.send_modal(modal)
+
+
+def setup(client):
+    client.add_cog(Modals(client))
