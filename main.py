@@ -1,6 +1,7 @@
 import asyncio
 import os
 import datetime
+import _tkinter
 from turtle import st
 from urllib import response
 import nextcord
