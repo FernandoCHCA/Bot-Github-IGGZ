@@ -1,8 +1,6 @@
 import asyncio
 import os
 import datetime
-from turtle import st
-from urllib import response
 import nextcord
 from config import *
 from time import sleep
