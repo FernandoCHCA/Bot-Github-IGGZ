@@ -22,7 +22,7 @@ class EmbedModal(nextcord.ui.Modal):
         title = self.emTitle.value
         description = self.emDesc.value
         colour = int('0x' + self.emColor.value, 16)
-        embed = nextcord.Embed(self, title=title, description=description, colour=colour)
+        embed = nextcord.Embed(title=title, description=description, colour=colour)
         return await interaction.response.send_message(embed=embed)
 
 class Embed_Modals_Cog(commands.Cog):
@@ -30,7 +30,7 @@ class Embed_Modals_Cog(commands.Cog):
         self.client = client
 
     @bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
-    async def embed(interaction: Interaction):
+    async def embed(self, interaction: Interaction):
         await interaction.response.send_modal(EmbedModal())
 
 #Setup 
