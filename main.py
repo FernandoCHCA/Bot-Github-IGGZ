@@ -40,12 +40,12 @@ class EmbedModal(nextcord.ui.Modal):
         self.add_item(self.emColor)
 
     async def callback(self, interaction: Interaction) -> None:
-        if colour:
-            embed.colour=int("0x" + colour, 16)
         title = self.emTitle.value
         description = self.emDesc.value
         colour = self.emColor.value
         embed = nextcord.Embed(title=title, description=description, colour=colour)
+        if colour:
+            embed.colour=int("0x" + colour, 16)
         return await interaction.response.send_message(embed=embed)
 
 @bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
