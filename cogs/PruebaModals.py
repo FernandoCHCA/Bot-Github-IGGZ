@@ -53,15 +53,14 @@ class Pet(nextcord.ui.Modal):
             )
         await interaction.send(response)
 
-
-@bot.slash_command(
-    name="pet",
-    description="Describe your favourite pet",
-    guild_ids=[ServersID]
-)
-async def send(interaction: nextcord.Interaction):
-    modal = Pet()
-    await interaction.response.send_modal(modal)
+    @bot.slash_command(
+        name="pet",
+        description="Describe your favourite pet",
+        guild_ids=[ServersID]
+    )
+    async def send(interaction: nextcord.Interaction):
+        modal = Pet()
+        await interaction.response.send_modal(modal)
 
 
 def setup(client):
