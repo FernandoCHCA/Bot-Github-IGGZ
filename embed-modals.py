@@ -3,6 +3,10 @@ from nextcord.ext import commands
 from nextcord import Embed, Interaction, slash_command, Member, SlashOption, ChannelType
 from config import *
 
+class Embed_Modals_Cog(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+
 class EmbedModal(nextcord.ui.Modal):
     def __init__(self):
         super().__init__(
@@ -25,12 +29,9 @@ class EmbedModal(nextcord.ui.Modal):
         embed = nextcord.Embed(title=title, description=description, colour=colour)
         return await interaction.response.send_message(embed=embed)
 
-class Embed_Modals_Cog(commands.Cog):
-    def __init__(self, client):
-        self.client = client
 
     @bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
-    async def embed(self, interaction: Interaction):
+    async def embed(interaction: Interaction):
         await interaction.response.send_modal(EmbedModal())
 
 #Setup 
