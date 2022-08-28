@@ -1,7 +1,7 @@
 import asyncio
 import os
 import nextcord
-import aiosqlite
+# import aiosqlite
 import sys
 import sqlite3
 from sqlite3 import Error
@@ -25,14 +25,14 @@ async def on_ready():
     print('\n------------------------------------------------------------')
     print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
-    async with aiosqlite.connect("main.db") as db:
+    async with sqlite3.connect("main.db") as db:
         async with db.cursor() as cursor:
             await cursor.execute("CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER")
         await db.commit()
 
 @bot.command()
 async def adduser(ctx:Interaction, member:nextcord.Member):
-    async with aiosqlite.connect("main.db") as db:
+    async with sqlite3.connect("main.db") as db:
         async with db.cursor() as cursor:
             await cursor.execute("SELECT id FROM users WHERE guild = ?", (ctx.guild.id,))
             data = await db.fetchone()
