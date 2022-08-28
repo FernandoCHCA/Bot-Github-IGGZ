@@ -25,23 +25,6 @@ async def on_ready():
     print('\n------------------------------------------------------------')
     print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
-    async with sqlite3.connect("main.db") as db: #1 Establezco conexion
-        async with db.cursor() as cursor:
-            await cursor.execute('CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER);')
-            print("Tabla creada exitosamente")
-        await db.commit()
-
-@bot.command()
-async def adduser(ctx:Interaction, member:nextcord.Member):
-    async with sqlite3.connect("main.db") as db:
-        async with db.cursor() as cursor:
-            await cursor.execute("SELECT id FROM users WHERE guild = ?", (ctx.guild.id))
-            data = await db.fetchone()
-            if data:
-                await cursor.execute('UPDATE users SET id = ? WHERE guild = ?', (member.id,ctx.guild.id))
-            else:
-                await cursor.execute('INSERT INTO users (id, guild) VALUES (?, ?)', (member.id,ctx.guild.id))
-        await db.commit()
 
 class EmbedModal(nextcord.ui.Modal):
     def __init__(self):
