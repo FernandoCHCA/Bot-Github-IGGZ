@@ -8,7 +8,7 @@ class Embed(commands.Cog):
         self.client = client
     
     #Embed command
-    @bot.slash_command(name='embed-create', description='Crea un embed para ti!', guild_ids=[ServersID])
+    @bot.slash_command(name='embed create', description='Crea un embed para ti!', guild_ids=[ServersID])
     async def embed_create(self, 
     ctx:Interaction,
     title: str = nextcord.SlashOption(name='title', description='Titulo de su embed', required=False),
