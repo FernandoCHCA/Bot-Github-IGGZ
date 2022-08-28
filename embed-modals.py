@@ -30,9 +30,9 @@ class EmbedModal(nextcord.ui.Modal):
         return await interaction.response.send_message(embed=embed)
 
 
-    @bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
-    async def embed(interaction: Interaction):
-        await interaction.response.send_modal(EmbedModal())
+@bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
+async def embed(interaction: Interaction):
+    await interaction.response.send_modal(EmbedModal())
 
 #Setup 
 def setup(client):
