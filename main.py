@@ -27,7 +27,7 @@ async def on_ready():
     print('------------------------------------------------------------\n')
     async with sqlite3.connect("main.db") as db: #1 Establezco conexion
         async with db.cursor() as cursor:
-            await cursor.execute("CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER)")
+            await cursor.execute('CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER);')
             print("Tabla creada exitosamente")
         await db.commit()
 
