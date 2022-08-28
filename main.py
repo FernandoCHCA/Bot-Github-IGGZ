@@ -1,9 +1,11 @@
 import asyncio
 import os
-import datetime
 import nextcord
+import aiosqlite
+import sys
+import sqlite3
+from sqlite3 import Error
 from config import *
-from time import sleep
 from nextcord.ext import commands
 from nextcord import Interaction, Intents
 #from dotenv import load_dotenv 
@@ -23,33 +25,49 @@ async def on_ready():
     print('\n------------------------------------------------------------')
     print(f'          El bot {bot.user} esta en linea...')
     print('------------------------------------------------------------\n')
+    async with aiosqlite.connect("main.db") as db:
+        async with db.cursor() as cursor:
+            await cursor.execute("CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER")
+        await db.commit()
 
-# class EmbedModal(nextcord.ui.Modal):
-#     def __init__(self):
-#         super().__init__(
-#             "Embed Maker",
-#         )
+@bot.command()
+async def adduser(ctx:Interaction, member:nextcord.Member):
+    async with aiosqlite.connect("main.db") as db:
+        async with db.cursor() as cursor:
+            await cursor.execute("SELECT id FROM users WHERE guild = ?", (ctx.guild.id,))
+            data = await db.fetchone()
+            if data:
+                await cursor.execute('UPDATE users SET id = ? WHERE guild = ?', (member.id,ctx.guild.id,))
+            else:
+                await cursor.execute('INSERT INTO users (id, guild) VALUES (?, ?)', (member.id,ctx.guild.id))
+        await db.commit()
 
-#         self.emTitle = nextcord.ui.TextInput(label = "Embed Title", min_length = 2, max_length = 124, required = True, placeholder = "Introduzca el título del embed aquí!")
-#         self.add_item(self.emTitle)
+class EmbedModal(nextcord.ui.Modal):
+    def __init__(self):
+        super().__init__(
+            "Embed Maker",
+        )
 
-#         self.emDesc = nextcord.ui.TextInput(label = "Embed Description", min_length = 5, max_length = 4000, required = True, placeholder = "Introduzca la descripcion del embed aquí!", style = nextcord.TextInputStyle.paragraph)
-#         self.add_item(self.emDesc)
+        self.emTitle = nextcord.ui.TextInput(label = "Embed Title", min_length = 2, max_length = 124, required = True, placeholder = "Introduzca el título del embed aquí!")
+        self.add_item(self.emTitle)
 
-#         self.emColor : int = nextcord.ui.TextInput(label = "Embed Color", min_length = 6, max_length = 6, required = False, placeholder = "Introduzca el color en hexadecimal del embed aquí!")
-#         self.add_item(self.emColor)
+        self.emDesc = nextcord.ui.TextInput(label = "Embed Description", min_length = 5, max_length = 4000, required = True, placeholder = "Introduzca la descripcion del embed aquí!", style = nextcord.TextInputStyle.paragraph)
+        self.add_item(self.emDesc)
 
-#     async def callback(self, interaction: Interaction) -> None:
-#         title = self.emTitle.value
-#         description = self.emDesc.value
-#         colour = int('0x' + self.emColor.value, 16)
-#         embed = nextcord.Embed(title=title, description=description, colour=colour)
-#         # embed = nextcord.Embed(title=title, description=description, colour=nextcord.Color.random())
-#         return await interaction.response.send_message(embed=embed)
+        self.emColor : int = nextcord.ui.TextInput(label = "Embed Color", min_length = 6, max_length = 6, required = False, placeholder = "Introduzca el color en hexadecimal del embed aquí!")
+        self.add_item(self.emColor)
 
-# @bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
-# async def embed(interaction: Interaction):
-#     await interaction.response.send_modal(EmbedModal())
+    async def callback(self, interaction: Interaction) -> None:
+        title = self.emTitle.value
+        description = self.emDesc.value
+        colour = int('0x' + self.emColor.value, 16)
+        embed = nextcord.Embed(title=title, description=description, colour=colour)
+        # embed = nextcord.Embed(title=title, description=description, colour=nextcord.Color.random())
+        return await interaction.response.send_message(embed=embed)
+
+@bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
+async def embed(interaction: Interaction):
+    await interaction.response.send_modal(EmbedModal())
 
 #Cogs
 for fn in os.listdir('./cogs'):
