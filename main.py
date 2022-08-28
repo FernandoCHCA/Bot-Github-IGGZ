@@ -27,7 +27,7 @@ async def on_ready():
     print('------------------------------------------------------------\n')
     async with sqlite3.connect("main.db") as db: #1 Establezco conexion
         async with db.cursor() as cursor:
-            await cursor.execute("CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER")
+            await cursor.execute("CREATE TABLE IF NOT EXISTS IF NOT EXISTS users (id INTEGER, guild INTEGER)")
             print("Tabla creada exitosamente")
         await db.commit()
 
@@ -66,7 +66,7 @@ class EmbedModal(nextcord.ui.Modal):
         # embed = nextcord.Embed(title=title, description=description, colour=nextcord.Color.random())
         return await interaction.response.send_message(embed=embed)
 
-@bot.slash_command(name="embed", description="Crea un Embed personalizado!", guild_ids=[ServersID])
+@bot.slash_command(name="embed-advanced", description="Crea un Embed personalizado!", guild_ids=[ServersID])
 async def embed(interaction: Interaction):
     await interaction.response.send_modal(EmbedModal())
 
